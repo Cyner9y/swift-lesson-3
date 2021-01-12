@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "E331CCEF-8BF9-4C76-B6B6-BB1FC9BBA198"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkClient/Graphics/GraphicsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "GraphicsController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B - ccd61f2e2034320a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkClient.GraphicsController.__deallocating_deinit"
+                  moduleName = "VkClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriyfedorov/Documents/swift-lesson-2/VkClient/VkClient/Graphics/GraphicsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B - 66e98bfeaf902085"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkClient.GraphicsController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; VkClient.GraphicsController"
+                  moduleName = "VkClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriyfedorov/Documents/swift-lesson-2/VkClient/VkClient/Graphics/GraphicsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B - 38a1596b84f3d9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkClient.GraphicsController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; VkClient.GraphicsController"
+                  moduleName = "VkClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriyfedorov/Documents/swift-lesson-2/VkClient/VkClient/Graphics/GraphicsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B - 7c0d0a017c67fd03"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkClient.GraphicsController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VkClient.GraphicsController&gt;"
+                  moduleName = "VkClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriyfedorov/Documents/swift-lesson-2/VkClient/VkClient/Graphics/GraphicsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "FD3D6724-0435-44BF-A96E-0A73A92D6A3B - 989872c3237adb91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VkClient.GraphicsController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;VkClient.GraphicsController&gt;"
+                  moduleName = "VkClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriyfedorov/Documents/swift-lesson-2/VkClient/VkClient/Graphics/GraphicsController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "121">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A96AB28-2C30-43D4-A9C3-9C844A952E84"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VkClient/News/NewsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "NewsCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

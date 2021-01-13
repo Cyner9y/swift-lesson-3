@@ -14,5 +14,5 @@ class Session {
     public static let shared = Session()
     
     var token = ""
-    var userId = ""
+    var userId = 0
 }

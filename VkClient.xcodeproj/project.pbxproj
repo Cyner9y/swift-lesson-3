@@ -26,6 +26,7 @@
 		D6C83421258AA9C1005FD4BB /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83420258AA9C1005FD4BB /* Lorem.swift */; };
 		D6C83464258E7534005FD4BB /* AvatarRounderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */; };
 		D6C8348B258E9B5C005FD4BB /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */; };
+		D6E0928725AF69510032C11E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0928625AF69510032C11E /* Session.swift */; };
 		D6F1B4F4258F5E80003B1789 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1B4F3258F5E80003B1789 /* LikeControl.swift */; };
 		D6F1B4F7258F6348003B1789 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1B4F6258F6348003B1789 /* CustomExtensions.swift */; };
 		D6F1B4FF25911905003B1789 /* FriendsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1B4FE25911905003B1789 /* FriendsTableView.swift */; };
@@ -63,6 +64,7 @@
 		D6C83420258AA9C1005FD4BB /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRounderViewController.swift; sourceTree = "<group>"; };
 		D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
+		D6E0928625AF69510032C11E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		D6F1B4F3258F5E80003B1789 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		D6F1B4F6258F6348003B1789 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		D6F1B4FE25911905003B1789 /* FriendsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		D6281E01257698F800781510 /* VkClient */ = {
 			isa = PBXGroup;
 			children = (
+				D6E0928525AF692B0032C11E /* Base */,
 				D6F1B52B2594B96C003B1789 /* Controls */,
 				D6F1B51A2594AFE5003B1789 /* News */,
 				D6772E0B258621A200B29277 /* AllGroups */,
@@ -194,6 +197,14 @@
 				D6772E0C2586220700B29277 /* AllGroupsTableController.swift */,
 			);
 			path = AllGroups;
+			sourceTree = "<group>";
+		};
+		D6E0928525AF692B0032C11E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D6E0928625AF69510032C11E /* Session.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		D6F1B51A2594AFE5003B1789 /* News */ = {
@@ -289,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6281E07257698F800781510 /* ViewController.swift in Sources */,
+				D6E0928725AF69510032C11E /* Session.swift in Sources */,
 				D6C83421258AA9C1005FD4BB /* Lorem.swift in Sources */,
 				D6F1B5342594BA02003B1789 /* ViewsControl.swift in Sources */,
 				D6F1B4F4258F5E80003B1789 /* LikeControl.swift in Sources */,

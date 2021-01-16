@@ -11,7 +11,7 @@ class SessionVK {
     
     private init() {}
     
-    public static let shared = Session()
+    public static let shared = SessionVK()
     
     var token = ""
     var userId = 0

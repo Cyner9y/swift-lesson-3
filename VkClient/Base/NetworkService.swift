@@ -33,6 +33,29 @@ class NetworkService {
             .responseJSON { json in
                 print(json)
             }
+        
+        NetworkService.session.request(host + path, method: .get, parameters: parameters).responseJSON { response in
+            print(response.value)
+        }
+    }
+    
+    func loadGroups () {
+        let baseUrl = "https://api.vk.com"
+        let path = "/methid/groups.get"
+        
+        let params: Parameters = [
+            "access_token": SessionVK.shared.token,
+            "extended": 1,
+            "v": "5.126"
+        ]
+        
+        NetworkService.session.request(baseUrl + path,
+                                       method: .get,
+                                       parameters: params)
+            .responseJSON { responce in
+            guard let json = responce.value else { return }
+            print(json)
+        }
     }
     
     func sendRequest(for city: String) {

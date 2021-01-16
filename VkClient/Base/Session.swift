@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Session {
+class SessionVK {
     
     private init() {}
     

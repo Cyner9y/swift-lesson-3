@@ -15,8 +15,7 @@ class NetworkService {
     static let session: Session = {
         let session = URLSessionConfiguration()
         session.timeoutIntervalForRequest = 60
-        let afSession = Session(session)
-        
+        let afSession = Session(configuration: session)
         return afSession
     }()
     

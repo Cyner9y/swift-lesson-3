@@ -16,7 +16,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let networkService = NetworkService()
+        networkService.weatherRequest()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {

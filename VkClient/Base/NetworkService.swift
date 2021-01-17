@@ -10,78 +10,72 @@ import Alamofire
 
 class NetworkService {
     
-    private let host = "https://api.openweathermap.org"
+    private let baseUrl = "https://api.vk.com"
     
-    static let session: Session = {
-        let session = URLSessionConfiguration()
-        session.timeoutIntervalForRequest = 60
-        let afSession = Session(configuration: session)
-        return afSession
-    }()
-    
-    func weatherRequest() {
-        let path = "/data/2.5/forecast"
-        let parameters: Parameters = [
-            "q": "London",
-            "appid": "1b409196acfcec7450381f93344d3434",
-            "units": "metric"
-        ]
-        
-        AF.request(host + path,
-                   method: .get,
-                   parameters: parameters)
-            .responseJSON { json in
-                print(json)
-            }
-        
-        NetworkService.session.request(host + path, method: .get, parameters: parameters).responseJSON { response in
-            print(response.value)
-        }
+    enum GroupType: String {
+        case group = "group"
+        case page = "page"
+        case event = "event"
     }
     
-    func loadGroups () {
-        let baseUrl = "https://api.vk.com"
-        let path = "/methid/groups.get"
-        
+    func friendsGet() {
+        let path = "/method/friends.get"
         let params: Parameters = [
+            "fields": "nickname",
             "access_token": SessionVK.shared.token,
-            "extended": 1,
             "v": "5.126"
         ]
         
-        NetworkService.session.request(baseUrl + path,
-                                       method: .get,
-                                       parameters: params)
-            .responseJSON { responce in
-            guard let json = responce.value else { return }
-            print(json)
-        }
+        AF.request(baseUrl + path, method: .get, parameters: params)
+            .responseJSON { response in
+                guard let json = response.value else { return }
+                print(json)
+            }
     }
     
-    func sendRequest(for city: String) {
-        let urlComponents: URLComponents = {
-            var components = URLComponents()
-            components.scheme = "https"
-            components.host = "api.openweathermap.org"
-            components.path = "/data/2.5/forecast"
-            components.queryItems = [
-                URLQueryItem(name: "q", value: city),
-                URLQueryItem(name: "appid", value: "1b409196acfcec7450381f93344d3434"),
-                URLQueryItem(name: "units", value: "metric")
-            ]
-            return components
-        }()
+    func groupsGet() {
+        let path = "/method/groups.get"
+        let params: Parameters = [
+            "extended": 1,
+            "access_token": SessionVK.shared.token,
+            "v": "5.126"
+        ]
         
-        guard let url = urlComponents.url else { fatalError("Url error") }
-        var  request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.allowsCellularAccess = false
+        AF.request(baseUrl + path, method: .get, parameters: params)
+            .responseJSON { response in
+                guard let json = response.value else { return }
+                print(json)
+            }
+    }
+    
+    func photosGetAll(owner_id: Int) {
+        let path = "/method/photos.getAll"
+        let params: Parameters = [
+            "owner_id": owner_id,
+            "access_token": SessionVK.shared.token,
+            "v": "5.126"
+        ]
         
-        let session = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else { return }
-            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            print(json)
-        }
-        session.resume()
+        AF.request(baseUrl + path, method: .get, parameters: params)
+            .responseJSON { response in
+                guard let json = response.value else { return }
+                print(json)
+            }
+    }
+    
+    func groupsSearch(query: String, type: GroupType) {
+        let path = "/method/groups.search"
+        let params: Parameters = [
+            "q": query,
+            "type": type,
+            "access_token": SessionVK.shared.token,
+            "v": "5.126"
+        ]
+        
+        AF.request(baseUrl + path, method: .get, parameters: params)
+            .responseJSON { response in
+                guard let json = response.value else { return }
+                print(json)
+            }
     }
 }

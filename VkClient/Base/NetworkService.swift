@@ -78,4 +78,20 @@ class NetworkService {
                 print(json)
             }
     }
+    
+    func groupsGetCatalog(category_id: Int, subcategory_id: Int) {
+        let path = "/method/groups.getCatalog"
+        let params: Parameters = [
+            "category_id": category_id,
+            "subcategory_id": subcategory_id,
+            "access_token": SessionVK.shared.token,
+            "v": "5.126"
+        ]
+        
+        AF.request(baseUrl + path, method: .get, parameters: params)
+            .responseJSON { response in
+                guard let json = response.value else { return }
+                print(json)
+            }
+    }
 }

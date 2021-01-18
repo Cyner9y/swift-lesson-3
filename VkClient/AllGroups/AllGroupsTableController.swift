@@ -14,7 +14,7 @@ class AllGroupsTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
-        networkService.groupsSearch(query: "amaranthe", type: .group)
+        networkService.groupsGetCatalog(category_id: 0, subcategory_id: 0)
     }
     
     // MARK: - Table view data source

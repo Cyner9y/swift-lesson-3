@@ -26,6 +26,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         tableView.keyboardDismissMode = .onDrag
 
         (firstLetters, sortedFriends) = sortFriends(myFriends)
+        
+        let networkService = NetworkService()
+        networkService.friendsGet()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

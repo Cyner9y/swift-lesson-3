@@ -6,60 +6,68 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var loginInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    
-    var timerSeconds = 2
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.navigationDelegate = self
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        view.alpha = 0.5
-        let progressStatusIndicator = ProgressStatusIndicator(frame: CGRect(x: 0, y:0, width: view.bounds.width, height: view.bounds.height))
-        view.addSubview(progressStatusIndicator)
         
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            self.timerSeconds -= 1
-            if self.timerSeconds == 0 {
-                timer.invalidate()
-                progressStatusIndicator.removeFromSuperview()
-                self.view.alpha = 1
-            }
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        let checkResult = checkUserData()
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "oauth.vk.com"
+        components.path = "/authorize"
+        components.queryItems = [
+            URLQueryItem(name: "client_id", value: "7730370"),
+            URLQueryItem(name: "scope", value: "336918"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.126")
+        ]
         
-        if !checkResult {
-            showLoginError()
-        }
-        return checkResult
-    }
-    
-    
-    
-    func checkUserData() -> Bool{
-        guard let login = loginInput.text, let password = passwordInput.text else { return false }
-        
-        if login == "" && password == "" {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func showLoginError() {
-        let alert = UIAlertController(title: "Ошибка", message: "Неправильный логин или пароль", preferredStyle: .alert)
-        let  action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        let request = URLRequest(url: components.url!)
+        webView.load(request)
     }
 }
 
+extension ViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        
+        guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment  else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        let params = fragment
+            .components(separatedBy: "&")
+            .map { $0.components(separatedBy: "=") }
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+        }
+        
+        guard let token = params["access_token"],
+              let userIdString = params["user_id"],
+              let userId = Int(userIdString) else {
+            decisionHandler(.allow)
+            return
+        }
+        
+        SessionVK.shared.token = token
+        SessionVK.shared.userId = userId
+        performSegue(withIdentifier: "loginSegue", sender: Any?.self)
+        
+
+        decisionHandler(.cancel)
+    }
+}

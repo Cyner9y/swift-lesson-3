@@ -10,6 +10,7 @@ import UIKit
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     var myFriends = generateUsers(count: 100)
+    var friendsVk = [Item]()
     var firstLetters = [Character]()
     var sortedFriends = [Character: [User]]()
     var searchActive = false
@@ -28,7 +29,11 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         (firstLetters, sortedFriends) = sortFriends(myFriends)
         
         let networkService = NetworkService()
-        networkService.friendsGet()
+        networkService.friendsGet() { [weak self] friends in
+            self?.friendsVk = friends
+            self?.tableView.reloadData()
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

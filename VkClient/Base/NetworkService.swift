@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class NetworkService {
     
@@ -18,26 +19,32 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet() {
+    func friendsGet(completion: @escaping ([Item]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
             "fields": "nickname",
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(FriendsVk.self, from: data)
+                    let friends = response?.response.items
+                    completion(friends!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
-    
     func groupsGet() {
         let path = "/method/groups.get"
         let params: Parameters = [
             "extended": 1,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
@@ -52,7 +59,7 @@ class NetworkService {
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "owner_id": owner_id,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
@@ -68,7 +75,7 @@ class NetworkService {
         let params: Parameters = [
             "q": query,
             "type": type,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
@@ -84,7 +91,7 @@ class NetworkService {
         let params: Parameters = [
             "category_id": category_id,
             "subcategory_id": subcategory_id,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         

@@ -29,8 +29,4 @@ class FriendCell: UITableViewCell {
         friendImage.layer.add(animation, forKey: nil)
         shadow.layer.add(animation, forKey: nil)
     }
-    
-    func configure(with friendVk: Item) {
-        textLabel?.text = "\(friendVk.firstName) \(friendVk.lastName)"
-    }
 }

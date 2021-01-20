@@ -13,15 +13,15 @@ struct FriendsVk: Codable {
 
 struct Response: Codable {
     let count: Int
-    let items: [Item]
+    let items: [Friend]
 }
 
-struct Item: Codable {
+struct Friend: Codable {
     let firstName: String
     let id: Int
     let lastName: String
     let canAccessClosed, isClosed: Bool?
-    let nickname: String?
+    let photo50: String
     let lists: [Int]?
     let trackCode: String
     let deactivated: Deactivated?
@@ -32,7 +32,8 @@ struct Item: Codable {
         case lastName = "last_name"
         case canAccessClosed = "can_access_closed"
         case isClosed = "is_closed"
-        case nickname, lists
+        case photo50 = "photo_50"
+        case lists
         case trackCode = "track_code"
         case deactivated
     }

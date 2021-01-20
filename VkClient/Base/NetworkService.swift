@@ -19,10 +19,10 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet(completion: @escaping ([Item]) -> Void) {
+    func friendsGet(completion: @escaping ([Friend]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
-            "fields": "nickname",
+            "fields": "photo_50",
             "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]

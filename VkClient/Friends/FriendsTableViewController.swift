@@ -10,7 +10,8 @@ import UIKit
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     var myFriends = generateUsers(count: 100)
-    var friendsVk = [Item]()
+    var friendsVk = [Friend]()
+    
     var firstLetters = [Character]()
     var sortedFriends = [Character: [User]]()
     var searchActive = false

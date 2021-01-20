@@ -23,12 +23,13 @@
 		D6772E1625864C6F00B29277 /* PhotosCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E1525864C6F00B29277 /* PhotosCollectionController.swift */; };
 		D6772E192586579200B29277 /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E182586579200B29277 /* PhotosCell.swift */; };
 		D6772E1C2586786B00B29277 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E1B2586786B00B29277 /* User.swift */; };
-		D6772E1F2586788500B29277 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E1E2586788500B29277 /* Group.swift */; };
 		D6B616802598B80700EF8E3F /* ProgressStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6167F2598B80700EF8E3F /* ProgressStatusIndicator.swift */; };
 		D6C83421258AA9C1005FD4BB /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83420258AA9C1005FD4BB /* Lorem.swift */; };
 		D6C83464258E7534005FD4BB /* AvatarRounderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */; };
 		D6C8348B258E9B5C005FD4BB /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */; };
 		D6D16BD325B72D6B00E0815B /* FriendsVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BD225B72D6B00E0815B /* FriendsVk.swift */; };
+		D6D16BF125B8BF5900E0815B /* GroupsVkAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */; };
+		D6D16BF725B8C83C00E0815B /* MyGroupsVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */; };
 		D6E0928725AF69510032C11E /* SessionVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0928625AF69510032C11E /* SessionVk.swift */; };
 		D6F1B4F4258F5E80003B1789 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1B4F3258F5E80003B1789 /* LikeControl.swift */; };
 		D6F1B4F7258F6348003B1789 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1B4F6258F6348003B1789 /* CustomExtensions.swift */; };
@@ -65,12 +66,13 @@
 		D6772E1525864C6F00B29277 /* PhotosCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionController.swift; sourceTree = "<group>"; };
 		D6772E182586579200B29277 /* PhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
 		D6772E1B2586786B00B29277 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D6772E1E2586788500B29277 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D6B6167F2598B80700EF8E3F /* ProgressStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStatusIndicator.swift; sourceTree = "<group>"; };
 		D6C83420258AA9C1005FD4BB /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRounderViewController.swift; sourceTree = "<group>"; };
 		D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
 		D6D16BD225B72D6B00E0815B /* FriendsVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVk.swift; sourceTree = "<group>"; };
+		D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVkAll.swift; sourceTree = "<group>"; };
+		D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsVk.swift; sourceTree = "<group>"; };
 		D6E0928625AF69510032C11E /* SessionVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVk.swift; sourceTree = "<group>"; };
 		D6F1B4F3258F5E80003B1789 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		D6F1B4F6258F6348003B1789 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
@@ -212,10 +214,11 @@
 			isa = PBXGroup;
 			children = (
 				D6772E1B2586786B00B29277 /* User.swift */,
-				D6772E1E2586788500B29277 /* Group.swift */,
 				D6C83420258AA9C1005FD4BB /* Lorem.swift */,
 				D6F1B5362594BD90003B1789 /* News.swift */,
 				D6D16BD225B72D6B00E0815B /* FriendsVk.swift */,
+				D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */,
+				D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -383,14 +386,15 @@
 				D6F1B5242594B1A8003B1789 /* NewsCell.swift in Sources */,
 				D6281E03257698F800781510 /* AppDelegate.swift in Sources */,
 				D6F1B518259261FC003B1789 /* SectionIndexManager.swift in Sources */,
+				D6D16BF125B8BF5900E0815B /* GroupsVkAll.swift in Sources */,
 				D63BA8F025B232E4000B59D3 /* NetworkService.swift in Sources */,
 				D6F1B51525925EF5003B1789 /* FirstLetterSearch.swift in Sources */,
 				D6B616802598B80700EF8E3F /* ProgressStatusIndicator.swift in Sources */,
 				D6D16BD325B72D6B00E0815B /* FriendsVk.swift in Sources */,
+				D6D16BF725B8C83C00E0815B /* MyGroupsVk.swift in Sources */,
 				D6772E1625864C6F00B29277 /* PhotosCollectionController.swift in Sources */,
 				D6C83464258E7534005FD4BB /* AvatarRounderViewController.swift in Sources */,
 				D6F1B5312594B9C6003B1789 /* ShareControl.swift in Sources */,
-				D6772E1F2586788500B29277 /* Group.swift in Sources */,
 				D6772E0D2586220700B29277 /* AllGroupsTableController.swift in Sources */,
 				D6772E0225851F2200B29277 /* FriendsTableViewController.swift in Sources */,
 				D6F1B4FF25911905003B1789 /* FriendsTableView.swift in Sources */,

@@ -40,7 +40,8 @@ class NetworkService {
                 }
             }
     }
-    func groupsGet() {
+       
+    func groupsGet(completion: @escaping ([MyGroupVk]) -> Void) {
         let path = "/method/groups.get"
         let params: Parameters = [
             "extended": 1,
@@ -49,9 +50,16 @@ class NetworkService {
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(MyGroupsVk.self, from: data)
+                    let myGroups = response?.response.items
+                    completion(myGroups!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
     
@@ -86,19 +94,24 @@ class NetworkService {
             }
     }
     
-    func groupsGetCatalog(category_id: Int, subcategory_id: Int) {
+    func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [
-            "category_id": category_id,
-            "subcategory_id": subcategory_id,
             "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(GroupsVk.self, from: data)
+                    let groups = response?.response.items
+                    completion(groups!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
 }

@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct FriendsVk: Codable {
-    let response: Response
+    let response: FriendsResponse
 }
 
-struct Response: Codable {
+struct FriendsResponse: Codable {
     let count: Int
     let items: [Friend]
 }
@@ -42,4 +43,18 @@ struct Friend: Codable {
 enum Deactivated: String, Codable {
     case banned = "banned"
     case deleted = "deleted"
+}
+
+struct FriendsVkSwifty {
+    let firstName: String
+    let id: Int
+    let lastName: String
+    let photo50: String
+    
+    init(_ json: JSON) {
+        self.firstName = json["response"]["items"]["first_name"].stringValue
+        self.id = json["response"]["items"]["id"].intValue
+        self.lastName = json["response"]["items"]["last_name"].stringValue
+        self.photo50 = json["response"]["items"]["photo_50"].stringValue
+    }
 }

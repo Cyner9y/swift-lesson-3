@@ -45,16 +45,20 @@ enum Deactivated: String, Codable {
     case deleted = "deleted"
 }
 
-struct FriendsVkSwifty {
-    let firstName: String
-    let id: Int
-    let lastName: String
-    let photo50: String
+func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
+    var characters = [Character]()
+    var sortedFriends = [Character: [FriendVk]]()
     
-    init(_ json: JSON) {
-        self.firstName = json["response"]["items"]["first_name"].stringValue
-        self.id = json["response"]["items"]["id"].intValue
-        self.lastName = json["response"]["items"]["last_name"].stringValue
-        self.photo50 = json["response"]["items"]["photo_50"].stringValue
+    friends.forEach { friend in
+        guard let character = friend.lastName.first else { return }
+        if var thisCharFriends = sortedFriends[character] {
+            thisCharFriends.append(friend)
+            sortedFriends[character] = thisCharFriends
+        } else {
+            sortedFriends[character] = [friend]
+            characters.append(character)
+        }
     }
+    characters.sort()
+    return (characters, sortedFriends)
 }

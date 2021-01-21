@@ -191,13 +191,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqj-Fc-GZU">
-                                            <rect key="frame" x="50" y="50" width="300" height="300"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="300" id="RqW-5J-v81"/>
-                                                <constraint firstAttribute="width" secondItem="hqj-Fc-GZU" secondAttribute="height" id="cGN-gl-JnJ"/>
-                                            </constraints>
-                                        </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Xo-zX-1Xd" customClass="LikeControl" customModule="VkClient" customModuleProvider="target">
                                             <rect key="frame" x="332" y="358" width="60" height="30"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -206,10 +199,17 @@
                                                 <constraint firstAttribute="width" constant="60" id="6nG-BU-jb4"/>
                                             </constraints>
                                         </view>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqj-Fc-GZU">
+                                            <rect key="frame" x="8" y="8" width="384" height="342"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="384" id="RqW-5J-v81"/>
+                                                <constraint firstAttribute="width" secondItem="hqj-Fc-GZU" secondAttribute="height" constant="42" id="cGN-gl-JnJ"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="5Xo-zX-1Xd" firstAttribute="top" secondItem="hqj-Fc-GZU" secondAttribute="bottom" constant="8" symbolic="YES" id="TVG-p7-Ipr"/>
-                                        <constraint firstItem="hqj-Fc-GZU" firstAttribute="centerY" secondItem="JnQ-se-SGC" secondAttribute="centerY" id="aKP-UM-XaR"/>
+                                        <constraint firstItem="hqj-Fc-GZU" firstAttribute="centerY" secondItem="JnQ-se-SGC" secondAttribute="centerY" constant="-21" id="aKP-UM-XaR"/>
                                         <constraint firstItem="5Xo-zX-1Xd" firstAttribute="trailing" secondItem="JnQ-se-SGC" secondAttribute="trailingMargin" id="oCI-cx-koY"/>
                                         <constraint firstItem="hqj-Fc-GZU" firstAttribute="centerX" secondItem="JnQ-se-SGC" secondAttribute="centerX" id="wd9-xt-72f"/>
                                     </constraints>

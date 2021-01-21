@@ -10,7 +10,6 @@ import Kingfisher
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-//    var myFriends = generateUsers(count: 100)
     var friendsVk = [FriendVk]()
     var firstLetters = [Character]()
     var sortedFriends = [Character: [FriendVk]]()
@@ -18,7 +17,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     var filteredFriendsArray: [FriendVk] = []
     
     @IBOutlet weak var friendsSearchBar: UISearchBar!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")        
@@ -26,7 +25,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         updateFriendsIndex(friends: filteredFriendsArray)
         updateFriendsNamesDictionary(friends: filteredFriendsArray)
         tableView.keyboardDismissMode = .onDrag
-
+        
         (firstLetters, sortedFriends) = sortFriends(friendsVk)
         
         let networkService = NetworkService()
@@ -44,9 +43,9 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         let char = firstLetters[indexPath.section]
         
-//        if let selectedFriend = sortedFriends[char]?[indexPath.row] {
-//            destination.avatar = selectedFriend.avatar
-//        }
+        if let selectedFriend = sortedFriends[char]?[indexPath.row] {
+            destination.id = selectedFriend.id
+        }
     }
     
     // MARK: - Table view data source
@@ -71,13 +70,13 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             let fullName = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
             cell.friendName.text = fullName
             let url = URL(string: friendsVk[indexPath.row].photo50)
-            cell.friendImage.kf.setImage(with: url, for: .normal)
-           // cell.friendImage.imageView?.kf.setImage(with: url)
 
+
+    
             
-
-//            cell.friendImage.setImage(UIImage(named: "Avatars/\(friends[indexPath.row].avatar)"), for: .normal)
-//            cell.friendImage.imageView?.image = UIImage(named: "Avatars/\(friends[indexPath.row].avatar)")
+            
+            
+            //     cell.friendImage.setImage(UIImage(named: "Avatars/\(friends[indexPath.row].avatar)"), for: .normal)
             cell.friendImage.layer.masksToBounds = false
             cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width/2
             cell.friendImage.clipsToBounds = true

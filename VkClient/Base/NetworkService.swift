@@ -63,7 +63,7 @@ class NetworkService {
             }
     }
     
-    func photosGetAll(owner_id: Int) {
+    func photosGetAll(owner_id: Int, completion: @escaping ([PhotoVk]) -> Void) {
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "owner_id": owner_id,
@@ -72,9 +72,16 @@ class NetworkService {
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(PhotosVk.self, from: data)
+                    let photos = response?.response.items
+                    completion(photos!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
     

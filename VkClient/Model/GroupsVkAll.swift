@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct GroupsVk: Codable {
     let response: GroupsVkResponse
 }

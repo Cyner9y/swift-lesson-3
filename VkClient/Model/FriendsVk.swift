@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct FriendsVk: Codable {
     let response: FriendsResponse

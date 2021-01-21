@@ -67,16 +67,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         let firstLetter = firstLetters[indexPath.section]
         if let friends = sortedFriends[firstLetter] {
-            let fullName = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
-            cell.friendName.text = fullName
+            cell.friendName.text = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
             let url = URL(string: friendsVk[indexPath.row].photo50)
-
-
-    
-            
-            
-            
-            //     cell.friendImage.setImage(UIImage(named: "Avatars/\(friends[indexPath.row].avatar)"), for: .normal)
+            let modifier = AnyImageModifier { return $0.withRenderingMode(.alwaysOriginal) }
+            cell.friendImage.kf.setImage(with: url, for: .normal, placeholder: nil, options: [.imageModifier(modifier)], progressBlock: nil, completionHandler: nil)
             cell.friendImage.layer.masksToBounds = false
             cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width/2
             cell.friendImage.clipsToBounds = true
@@ -131,7 +125,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         updateFriendsIndex(friends: filteredFriendsArray)
         updateFriendsNamesDictionary(friends: filteredFriendsArray)
         print(filteredFriendsArray)
-        
         
         if (searchText.count == 0) {
             updateFriendsIndex(friends: friendsVk)

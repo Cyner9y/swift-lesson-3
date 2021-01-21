@@ -78,7 +78,7 @@ class NetworkService {
                     let decoder = JSONDecoder()
                     let response = try? decoder.decode(PhotosVk.self, from: data)
                     let photos = response?.response.items
-                    completion(photos!)
+                    completion(photos ?? [])
                 case .failure(let error):
                     print(error)
                 }

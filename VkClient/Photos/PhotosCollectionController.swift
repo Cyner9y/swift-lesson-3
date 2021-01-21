@@ -35,7 +35,7 @@ class PhotosCollectionController: UICollectionViewController, UICollectionViewDe
                 as? PhotosCell
         else { return UICollectionViewCell() }
         
-        let url = URL(string: photosVk[indexPath.row].sizes[4].url)
+        let url = URL(string: photosVk[indexPath.row].sizes.last!.url)
         cell.photo.kf.setImage(with: url)
         
         return cell

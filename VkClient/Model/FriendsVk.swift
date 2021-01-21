@@ -14,10 +14,10 @@ struct FriendsVk: Codable {
 
 struct FriendsResponse: Codable {
     let count: Int
-    let items: [Friend]
+    let items: [FriendVk]
 }
 
-struct Friend: Codable {
+struct FriendVk: Codable {
     let firstName: String
     let id: Int
     let lastName: String

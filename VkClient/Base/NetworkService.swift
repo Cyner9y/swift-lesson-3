@@ -19,7 +19,7 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet(completion: @escaping ([Friend]) -> Void) {
+    func friendsGet(completion: @escaping ([FriendVk]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
             "fields": "photo_50",

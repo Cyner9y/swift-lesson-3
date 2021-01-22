@@ -10,23 +10,32 @@ import Kingfisher
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var friendsVk = [FriendVk]()
+    var friendsVk = [FriendVk]() {
+        didSet {
+            (firstLetters, sortedFriends) = sortFriends(friendsVk)
+        }
+    }
     var firstLetters = [Character]()
-    var sortedFriends = [Character: [FriendVk]]()
+    var sortedFriends = [Character: [FriendVk]]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var searchActive = false
-    var filteredFriendsArray: [FriendVk] = []
+    var filteredFriendsArray: [FriendVk] = [] {
+        didSet {
+            updateFriendsIndex(friends: filteredFriendsArray)
+            updateFriendsNamesDictionary(friends: filteredFriendsArray)
+        }
+    }
     
     @IBOutlet weak var friendsSearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")        
-        filteredFriendsArray = friendsVk
-        updateFriendsIndex(friends: filteredFriendsArray)
-        updateFriendsNamesDictionary(friends: filteredFriendsArray)
-        tableView.keyboardDismissMode = .onDrag
+        tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
         
-        (firstLetters, sortedFriends) = sortFriends(friendsVk)
+        tableView.keyboardDismissMode = .onDrag
         
         let networkService = NetworkService()
         networkService.friendsGet() { [weak self] friends in
@@ -103,7 +112,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return friendsIndexToStringArray
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header: UITableViewHeaderFooterView = view as? UITableViewHeaderFooterView {
             header.backgroundView?.backgroundColor = tableView.backgroundColor
             header.backgroundView?.alpha = 0.5
@@ -146,5 +155,23 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
     func updateFriendsIndex(friends: [FriendVk]) {
         firstLetters = SectionIndexManager.getOrderedIndexArray(array: friends)
+    }
+    
+    func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
+        var characters = [Character]()
+        var sortedFriends = [Character: [FriendVk]]()
+        
+        friends.forEach { friend in
+            guard let character = friend.lastName.first else { return }
+            if var thisCharFriends = sortedFriends[character] {
+                thisCharFriends.append(friend)
+                sortedFriends[character] = thisCharFriends
+            } else {
+                sortedFriends[character] = [friend]
+                characters.append(character)
+            }
+        }
+        characters.sort()
+        return (characters, sortedFriends)
     }
 }

@@ -40,7 +40,7 @@ class NetworkService {
                 }
             }
     }
-       
+    
     func groupsGet(completion: @escaping ([MyGroupVk]) -> Void) {
         let path = "/method/groups.get"
         let params: Parameters = [

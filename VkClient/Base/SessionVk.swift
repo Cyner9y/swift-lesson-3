@@ -7,11 +7,11 @@
 
 import Foundation
 
-class SessionVK {
+class SessionVk {
     
     private init() {}
     
-    public static let shared = SessionVK()
+    public static let shared = SessionVk()
     
     var token = ""
     var userId = 0

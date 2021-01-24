@@ -9,12 +9,15 @@ import UIKit
 
 class AllGroupsTableController: UITableViewController {
     
-    var allGroups = generateGroups(count: 50)
-    
+    var groupsVk = [GroupVk]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
-        networkService.groupsGetCatalog(category_id: 0, subcategory_id: 0)
+        networkService.groupsGetCatalog() { [weak self] groups in
+            self?.groupsVk = groups
+            self?.tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -24,7 +27,7 @@ class AllGroupsTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allGroups.count
+        groupsVk.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,10 +35,8 @@ class AllGroupsTableController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
                 as? GroupCell
         else { return UITableViewCell() }
-        cell.groupName.text = allGroups[indexPath.row].name
-        cell.groupAvatar.image = UIImage(named: "GroupAvatars/\(allGroups[indexPath.row].avatar)")
-        cell.groupAvatar.layer.cornerRadius = cell.groupAvatar.frame.height / 2
-        cell.groupAvatar.clipsToBounds = true
+        
+        cell.configureAllGroup(with: groupsVk[indexPath.row])
         
         return cell
     }

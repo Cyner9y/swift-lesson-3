@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class NetworkService {
     
@@ -18,48 +19,69 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet() {
+    func friendsGet(completion: @escaping ([FriendVk]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
-            "fields": "nickname",
-            "access_token": SessionVK.shared.token,
+            "fields": "photo_50",
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(FriendsVk.self, from: data)
+                    let friends = response?.response.items
+                    completion(friends!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
     
-    func groupsGet() {
+    func groupsGet(completion: @escaping ([MyGroupVk]) -> Void) {
         let path = "/method/groups.get"
         let params: Parameters = [
             "extended": 1,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(MyGroupsVk.self, from: data)
+                    let myGroups = response?.response.items
+                    completion(myGroups!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
     
-    func photosGetAll(owner_id: Int) {
+    func photosGetAll(owner_id: Int, completion: @escaping ([PhotoVk]) -> Void) {
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "owner_id": owner_id,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(PhotosVk.self, from: data)
+                    let photos = response?.response.items
+                    completion(photos ?? [])
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
     
@@ -68,7 +90,7 @@ class NetworkService {
         let params: Parameters = [
             "q": query,
             "type": type,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
@@ -79,19 +101,24 @@ class NetworkService {
             }
     }
     
-    func groupsGetCatalog(category_id: Int, subcategory_id: Int) {
+    func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [
-            "category_id": category_id,
-            "subcategory_id": subcategory_id,
-            "access_token": SessionVK.shared.token,
+            "access_token": SessionVk.shared.token,
             "v": "5.126"
         ]
         
         AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseJSON { response in
-                guard let json = response.value else { return }
-                print(json)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    let response = try? decoder.decode(GroupsVk.self, from: data)
+                    let groups = response?.response.items
+                    completion(groups!)
+                case .failure(let error):
+                    print(error)
+                }
             }
     }
 }

@@ -54,7 +54,7 @@ extension ViewController: WKNavigationDelegate {
                 let value = param[1]
                 dict[key] = value
                 return dict
-        }
+            }
         
         guard let token = params["access_token"],
               let userIdString = params["user_id"],
@@ -63,11 +63,10 @@ extension ViewController: WKNavigationDelegate {
             return
         }
         
-        SessionVK.shared.token = token
-        SessionVK.shared.userId = userId
+        SessionVk.shared.token = token
+        SessionVk.shared.userId = userId
         performSegue(withIdentifier: "loginSegue", sender: Any?.self)
         
-
         decisionHandler(.cancel)
     }
 }

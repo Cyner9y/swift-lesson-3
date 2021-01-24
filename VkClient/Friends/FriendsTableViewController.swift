@@ -6,29 +6,42 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var myFriends = generateUsers(count: 100)
+    var friendsVk = [FriendVk]() {
+        didSet {
+            (firstLetters, sortedFriends) = sortFriends(friendsVk)
+        }
+    }
     var firstLetters = [Character]()
-    var sortedFriends = [Character: [User]]()
+    var sortedFriends = [Character: [FriendVk]]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var searchActive = false
-    var filteredFriendsArray: [User] = []
+    var filteredFriendsArray: [FriendVk] = [] {
+        didSet {
+            updateFriendsIndex(friends: filteredFriendsArray)
+            updateFriendsNamesDictionary(friends: filteredFriendsArray)
+        }
+    }
     
     @IBOutlet weak var friendsSearchBar: UISearchBar!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")        
-        filteredFriendsArray = myFriends
-        updateFriendsIndex(friends: filteredFriendsArray)
-        updateFriendsNamesDictionary(friends: filteredFriendsArray)
+        tableView.register(FriendsSectionHeader.self, forHeaderFooterViewReuseIdentifier: "FriendsSectionHeader")
+        
         tableView.keyboardDismissMode = .onDrag
-
-        (firstLetters, sortedFriends) = sortFriends(myFriends)
         
         let networkService = NetworkService()
-        networkService.friendsGet()
+        networkService.friendsGet() { [weak self] friends in
+            self?.friendsVk = friends
+            self?.tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,7 +53,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         let char = firstLetters[indexPath.section]
         
         if let selectedFriend = sortedFriends[char]?[indexPath.row] {
-            destination.avatar = selectedFriend.avatar
+            destination.id = selectedFriend.id
         }
     }
     
@@ -60,15 +73,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
                 as? FriendCell
         else { return UITableViewCell() }
-        
+                
         let firstLetter = firstLetters[indexPath.section]
         if let friends = sortedFriends[firstLetter] {
-            cell.friendName.text = friends[indexPath.row].fullName
-            cell.friendImage.setImage(UIImage(named: "Avatars/\(friends[indexPath.row].avatar)"), for: .normal)
-            cell.friendImage.imageView?.image = UIImage(named: "Avatars/\(friends[indexPath.row].avatar)")
-            cell.friendImage.layer.masksToBounds = false
-            cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width/2
-            cell.friendImage.clipsToBounds = true
+            cell.configure(with: friends[indexPath.row])
         }
         
         return cell
@@ -98,7 +106,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return friendsIndexToStringArray
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let header: UITableViewHeaderFooterView = view as? UITableViewHeaderFooterView {
             header.backgroundView?.backgroundColor = tableView.backgroundColor
             header.backgroundView?.alpha = 0.5
@@ -114,17 +122,16 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFriendsArray = myFriends.filter({ (friend) -> Bool in
-            FirstLetterSearch.isMatched(searchBase: friend.fullName, searchString: searchText)
+        filteredFriendsArray = friendsVk.filter({ (friend) -> Bool in
+            FirstLetterSearch.isMatched(searchBase: "\(friend.firstName) \(friend.lastName)", searchString: searchText)
         })
         updateFriendsIndex(friends: filteredFriendsArray)
         updateFriendsNamesDictionary(friends: filteredFriendsArray)
         print(filteredFriendsArray)
         
-        
         if (searchText.count == 0) {
-            updateFriendsIndex(friends: myFriends)
-            updateFriendsNamesDictionary(friends: myFriends)
+            updateFriendsIndex(friends: friendsVk)
+            updateFriendsNamesDictionary(friends: friendsVk)
             searchActive = false
             hideKeyboard()
         }
@@ -136,11 +143,29 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         friendsSearchBar.endEditing(true)
     }
     
-    func updateFriendsNamesDictionary(friends: [User]) {
+    func updateFriendsNamesDictionary(friends: [FriendVk]) {
         sortedFriends = SectionIndexManager.getFriendIndexDictionary(array: friends)
     }
     
-    func updateFriendsIndex(friends: [User]) {
+    func updateFriendsIndex(friends: [FriendVk]) {
         firstLetters = SectionIndexManager.getOrderedIndexArray(array: friends)
+    }
+    
+    func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
+        var characters = [Character]()
+        var sortedFriends = [Character: [FriendVk]]()
+        
+        friends.forEach { friend in
+            guard let character = friend.lastName.first else { return }
+            if var thisCharFriends = sortedFriends[character] {
+                thisCharFriends.append(friend)
+                sortedFriends[character] = thisCharFriends
+            } else {
+                sortedFriends[character] = [friend]
+                characters.append(character)
+            }
+        }
+        characters.sort()
+        return (characters, sortedFriends)
     }
 }

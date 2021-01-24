@@ -30,20 +30,20 @@ func generateUsers(count: Int) -> [User] {
     return (1...count).map {_ in generateUser()}
 }
 
-func sortFriends(_ friends: [User]) -> (characters: [Character], sortedFriends: [Character: [User]]) {
-    var characters = [Character]()
-    var sortedFriends = [Character: [User]]()
-    
-    friends.forEach { friend in
-        guard let character = friend.lastName.first else { return }
-        if var thisCharFriends = sortedFriends[character] {
-            thisCharFriends.append(friend)
-            sortedFriends[character] = thisCharFriends
-        } else {
-            sortedFriends[character] = [friend]
-            characters.append(character)
-        }
-    }
-    characters.sort()
-    return (characters, sortedFriends)
-}
+//func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
+//    var characters = [Character]()
+//    var sortedFriends = [Character: [FriendVk]]()
+//    
+//    friends.forEach { friend in
+//        guard let character = friend.lastName.first else { return }
+//        if var thisCharFriends = sortedFriends[character] {
+//            thisCharFriends.append(friend)
+//            sortedFriends[character] = thisCharFriends
+//        } else {
+//            sortedFriends[character] = [friend]
+//            characters.append(character)
+//        }
+//    }
+//    characters.sort()
+//    return (characters, sortedFriends)
+//}

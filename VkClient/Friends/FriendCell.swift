@@ -14,6 +14,10 @@ class FriendCell: UITableViewCell {
     
     @IBOutlet weak var shadow: ShadowViewController!
     
+    func configure(with friendVk: FriendVk) {
+        friendName.text = "\(friendVk.firstName) \(friendVk.lastName)"
+    }
+    
 //    func animate() {
 //        let animation = CASpringAnimation(keyPath: "transform.scale")
 //        animation.fromValue = 0

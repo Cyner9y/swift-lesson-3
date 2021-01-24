@@ -210,7 +210,7 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="400" height="400"/>
                                 <connections>
-                                    <outlet property="photo" destination="hqj-Fc-GZU" id="ycj-MQ-eeA"/>
+                                    <outlet property="userPhoto" destination="hqj-Fc-GZU" id="0hc-9d-wup"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

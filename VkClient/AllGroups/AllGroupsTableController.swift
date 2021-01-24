@@ -35,11 +35,8 @@ class AllGroupsTableController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
                 as? GroupCell
         else { return UITableViewCell() }
-        cell.groupName.text = groupsVk[indexPath.row].name
-        let url = URL(string: groupsVk[indexPath.row].photo50)
-        cell.groupAvatar.kf.setImage(with: url)
-        cell.groupAvatar.layer.cornerRadius = cell.groupAvatar.frame.height / 2
-        cell.groupAvatar.clipsToBounds = true
+        
+        cell.configureAllGroup(with: groupsVk[indexPath.row])
         
         return cell
     }

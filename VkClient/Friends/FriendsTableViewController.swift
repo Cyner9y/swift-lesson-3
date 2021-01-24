@@ -73,12 +73,12 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath)
                 as? FriendCell
         else { return UITableViewCell() }
-        
+                
         let firstLetter = firstLetters[indexPath.section]
         if let friends = sortedFriends[firstLetter] {
+            
             cell.friendName.text = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
             let url = URL(string: friendsVk[indexPath.row].photo50)
-            let modifier = AnyImageModifier { return $0.withRenderingMode(.alwaysOriginal) }
             cell.friendImage.kf.setImage(with: url)
             cell.friendImage.layer.masksToBounds = false
             cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width/2

@@ -16,6 +16,11 @@ class FriendCell: UITableViewCell {
     
     func configure(with friendVk: FriendVk) {
         friendName.text = "\(friendVk.firstName) \(friendVk.lastName)"
+        let url = URL(string: friendVk.photo50)
+        friendImage.kf.setImage(with: url)
+        friendImage.layer.masksToBounds = false
+        friendImage.layer.cornerRadius = friendImage.frame.width/2
+        friendImage.clipsToBounds = true
     }
     
 //    func animate() {

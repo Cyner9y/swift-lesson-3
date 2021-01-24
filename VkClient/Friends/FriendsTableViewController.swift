@@ -76,13 +76,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 
         let firstLetter = firstLetters[indexPath.section]
         if let friends = sortedFriends[firstLetter] {
-            
-            cell.friendName.text = "\(friends[indexPath.row].firstName) \(friends[indexPath.row].lastName)"
-            let url = URL(string: friendsVk[indexPath.row].photo50)
-            cell.friendImage.kf.setImage(with: url)
-            cell.friendImage.layer.masksToBounds = false
-            cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width/2
-            cell.friendImage.clipsToBounds = true
+            cell.configure(with: friends[indexPath.row])
         }
         
         return cell

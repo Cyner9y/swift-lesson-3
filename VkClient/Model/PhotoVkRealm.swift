@@ -40,7 +40,6 @@ class PhotoVkRealm: Object {
         self.id = id
         self.ownerID = ownerID
         self.hasTags = hasTags
-        self.sizes = sizes
         self.text = text
     }
 }
@@ -55,6 +54,7 @@ class SizeRealm: Object {
                      url: String,
                      type: String,
                      width: Int) {
+        self.init()
         self.height = height
         self.url = url
         self.type = type

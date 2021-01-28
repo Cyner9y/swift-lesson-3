@@ -15,7 +15,6 @@ class FriendVkRealm: Object {
     let canAccessClosed = RealmOptional<Bool>()
     let isClosed = RealmOptional<Bool>()
     @objc dynamic var photo50 = ""
-    @objc dynamic var lists: [Int]?
     @objc dynamic var trackCode = ""
     @objc dynamic var deactivated: String? = nil
     
@@ -35,7 +34,6 @@ class FriendVkRealm: Object {
                      id: Int,
                      lastName: String,
                      photo50: String,
-                     lists: [Int]?,
                      trackCode: String,
                      deactivated: String?) {
         self.init()
@@ -43,7 +41,6 @@ class FriendVkRealm: Object {
         self.id = id
         self.lastName = lastName
         self.photo50 = photo50
-        self.lists = lists
         self.trackCode = trackCode
         self.deactivated = deactivated
     }

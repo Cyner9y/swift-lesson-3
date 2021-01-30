@@ -22,12 +22,16 @@
 		D6772E13258622D700B29277 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E12258622D700B29277 /* GroupCell.swift */; };
 		D6772E1625864C6F00B29277 /* PhotosCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E1525864C6F00B29277 /* PhotosCollectionController.swift */; };
 		D6772E192586579200B29277 /* PhotosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E182586579200B29277 /* PhotosCell.swift */; };
+		D69B07C825C1FF3F00B22F9D /* FriendVkRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B07C725C1FF3F00B22F9D /* FriendVkRealm.swift */; };
+		D69B07CB25C1FF5200B22F9D /* GroupVkRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B07CA25C1FF5200B22F9D /* GroupVkRealm.swift */; };
+		D69B07CE25C1FF6500B22F9D /* MyGroupVkRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B07CD25C1FF6500B22F9D /* MyGroupVkRealm.swift */; };
+		D69B07D125C1FF7D00B22F9D /* PhotoVkRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B07D025C1FF7D00B22F9D /* PhotoVkRealm.swift */; };
 		D6B616802598B80700EF8E3F /* ProgressStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B6167F2598B80700EF8E3F /* ProgressStatusIndicator.swift */; };
 		D6C83421258AA9C1005FD4BB /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83420258AA9C1005FD4BB /* Lorem.swift */; };
 		D6C83464258E7534005FD4BB /* AvatarRounderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */; };
 		D6C8348B258E9B5C005FD4BB /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */; };
 		D6D16BD325B72D6B00E0815B /* FriendsVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BD225B72D6B00E0815B /* FriendsVk.swift */; };
-		D6D16BF125B8BF5900E0815B /* GroupsVkAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */; };
+		D6D16BF125B8BF5900E0815B /* GroupsVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BF025B8BF5900E0815B /* GroupsVk.swift */; };
 		D6D16BF725B8C83C00E0815B /* MyGroupsVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */; };
 		D6D16BFD25B9CC6D00E0815B /* PhotosVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D16BFC25B9CC6D00E0815B /* PhotosVk.swift */; };
 		D6E0928725AF69510032C11E /* SessionVk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E0928625AF69510032C11E /* SessionVk.swift */; };
@@ -65,12 +69,16 @@
 		D6772E12258622D700B29277 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D6772E1525864C6F00B29277 /* PhotosCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionController.swift; sourceTree = "<group>"; };
 		D6772E182586579200B29277 /* PhotosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCell.swift; sourceTree = "<group>"; };
+		D69B07C725C1FF3F00B22F9D /* FriendVkRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVkRealm.swift; sourceTree = "<group>"; };
+		D69B07CA25C1FF5200B22F9D /* GroupVkRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVkRealm.swift; sourceTree = "<group>"; };
+		D69B07CD25C1FF6500B22F9D /* MyGroupVkRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupVkRealm.swift; sourceTree = "<group>"; };
+		D69B07D025C1FF7D00B22F9D /* PhotoVkRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVkRealm.swift; sourceTree = "<group>"; };
 		D6B6167F2598B80700EF8E3F /* ProgressStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStatusIndicator.swift; sourceTree = "<group>"; };
 		D6C83420258AA9C1005FD4BB /* Lorem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		D6C83463258E7534005FD4BB /* AvatarRounderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRounderViewController.swift; sourceTree = "<group>"; };
 		D6C8348A258E9B5C005FD4BB /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
 		D6D16BD225B72D6B00E0815B /* FriendsVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVk.swift; sourceTree = "<group>"; };
-		D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVkAll.swift; sourceTree = "<group>"; };
+		D6D16BF025B8BF5900E0815B /* GroupsVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVk.swift; sourceTree = "<group>"; };
 		D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsVk.swift; sourceTree = "<group>"; };
 		D6D16BFC25B9CC6D00E0815B /* PhotosVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosVk.swift; sourceTree = "<group>"; };
 		D6E0928625AF69510032C11E /* SessionVk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVk.swift; sourceTree = "<group>"; };
@@ -122,10 +130,10 @@
 		D6281DF6257698F800781510 = {
 			isa = PBXGroup;
 			children = (
-				D6281E01257698F800781510 /* VkClient */,
-				D6281E00257698F800781510 /* Products */,
-				7C0512E3C9E8664875FB1802 /* Pods */,
 				6F35F4A530FCC2F96E976243 /* Frameworks */,
+				7C0512E3C9E8664875FB1802 /* Pods */,
+				D6281E00257698F800781510 /* Products */,
+				D6281E01257698F800781510 /* VkClient */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,9 +224,13 @@
 				D6C83420258AA9C1005FD4BB /* Lorem.swift */,
 				D6F1B5362594BD90003B1789 /* News.swift */,
 				D6D16BD225B72D6B00E0815B /* FriendsVk.swift */,
-				D6D16BF025B8BF5900E0815B /* GroupsVkAll.swift */,
+				D6D16BF025B8BF5900E0815B /* GroupsVk.swift */,
 				D6D16BF625B8C83C00E0815B /* MyGroupsVk.swift */,
 				D6D16BFC25B9CC6D00E0815B /* PhotosVk.swift */,
+				D69B07C725C1FF3F00B22F9D /* FriendVkRealm.swift */,
+				D69B07CA25C1FF5200B22F9D /* GroupVkRealm.swift */,
+				D69B07CD25C1FF6500B22F9D /* MyGroupVkRealm.swift */,
+				D69B07D025C1FF7D00B22F9D /* PhotoVkRealm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -384,20 +396,24 @@
 				D6F1B52D2594B99B003B1789 /* CommentControl.swift in Sources */,
 				D6F1B51C2594B06A003B1789 /* NewsTableController.swift in Sources */,
 				D6D16BFD25B9CC6D00E0815B /* PhotosVk.swift in Sources */,
+				D69B07C825C1FF3F00B22F9D /* FriendVkRealm.swift in Sources */,
+				D69B07D125C1FF7D00B22F9D /* PhotoVkRealm.swift in Sources */,
 				D6F1B5242594B1A8003B1789 /* NewsCell.swift in Sources */,
 				D6281E03257698F800781510 /* AppDelegate.swift in Sources */,
 				D6F1B518259261FC003B1789 /* SectionIndexManager.swift in Sources */,
-				D6D16BF125B8BF5900E0815B /* GroupsVkAll.swift in Sources */,
+				D6D16BF125B8BF5900E0815B /* GroupsVk.swift in Sources */,
 				D63BA8F025B232E4000B59D3 /* NetworkService.swift in Sources */,
 				D6F1B51525925EF5003B1789 /* FirstLetterSearch.swift in Sources */,
 				D6B616802598B80700EF8E3F /* ProgressStatusIndicator.swift in Sources */,
 				D6D16BD325B72D6B00E0815B /* FriendsVk.swift in Sources */,
 				D6D16BF725B8C83C00E0815B /* MyGroupsVk.swift in Sources */,
+				D69B07CB25C1FF5200B22F9D /* GroupVkRealm.swift in Sources */,
 				D6772E1625864C6F00B29277 /* PhotosCollectionController.swift in Sources */,
 				D6C83464258E7534005FD4BB /* AvatarRounderViewController.swift in Sources */,
 				D6F1B5312594B9C6003B1789 /* ShareControl.swift in Sources */,
 				D6772E0D2586220700B29277 /* AllGroupsTableController.swift in Sources */,
 				D6772E0225851F2200B29277 /* FriendsTableViewController.swift in Sources */,
+				D69B07CE25C1FF6500B22F9D /* MyGroupVkRealm.swift in Sources */,
 				D6F1B4FF25911905003B1789 /* FriendsTableView.swift in Sources */,
 				D6281E05257698F800781510 /* SceneDelegate.swift in Sources */,
 				D6C8348B258E9B5C005FD4BB /* ShadowViewController.swift in Sources */,

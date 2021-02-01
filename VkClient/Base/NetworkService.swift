@@ -47,12 +47,13 @@ class NetworkService {
             }
     }
     
-    func groupsGet(completion: @escaping ([MyGroupsVkRealm]) -> Void) {
+    func groupsGet(completion: @escaping ([MyGroupVkRealm]) -> Void) {
         let path = "/method/groups.get"
         let params: Parameters = [
             "access_token" : token,
             "extended" : 1,
-            "v" : version]
+            "v" : version
+        ]
         
         AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
             guard let data = responds.data else { return }
@@ -61,13 +62,15 @@ class NetworkService {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
                 let dataGroups = MyGroupsVkRealm(json: responstData.response)
                 
-                var groupsArray = [MyGroupsVkRealm]()
+                var groupsArray = [MyGroupVkRealm]()
                 
                 for item in dataGroups.groups {
-                    let group = MyGroupsVkRealm(json: item)
+                    let group = MyGroupVkRealm(json: item)
                     groupsArray.append(group)
                 }
+                
                 completion(groupsArray)
+                
             } catch {
                 print("error")
             }

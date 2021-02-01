@@ -8,7 +8,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class MyGroupsVkRealm: Object {
+class MyGroupsVkRealm {
     @objc dynamic var count: Int = 0
     var groups: [JSON] =  []
     

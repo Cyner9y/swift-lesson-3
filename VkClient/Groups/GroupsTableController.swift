@@ -11,23 +11,15 @@ import RealmSwift
 
 class GroupsTableController: UITableViewController {
     
-    var groupsVk: Results<MyGroupVkRealm>?
+    private lazy var groupsVk = try? Realm().objects(MyGroupVkRealm.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
         networkService.groupsGet() { [weak self] myGroups in
             try? RealmService.save(items: myGroups)
-            self?.tableView.reloadData()
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            groupsVk.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//    }
 
     // MARK: - Table view data source
 

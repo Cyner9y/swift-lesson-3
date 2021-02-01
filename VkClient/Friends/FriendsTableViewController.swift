@@ -10,11 +10,7 @@ import RealmSwift
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    private lazy var friendsVk = try? Realm().objects(FriendVkRealm.self).toArray(type: FriendVkRealm.self) as [FriendVkRealm] {
-        didSet {
-            (firstLetters, sortedFriends) = sortFriends(friendsVk!)
-        }
-    }
+    private lazy var friendsVk = try? Realm().objects(FriendVkRealm.self).toArray(type: FriendVkRealm.self) as [FriendVkRealm]
     
     var firstLetters = [Character]()
     var sortedFriends = [Character: [FriendVkRealm]]() {
@@ -42,6 +38,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         networkService.friendsGet() { [weak self] friends in
             try? RealmService.save(items: friends)
         }
+        
+        (firstLetters, sortedFriends) = sortFriends(friendsVk!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

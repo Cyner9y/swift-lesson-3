@@ -21,11 +21,12 @@ class MyGroupsVkRealm {
 
 class MyGroupVkRealm: Object {
     @objc dynamic var id: Int = 0
-    @objc dynamic var isClosed: Int = 0
     @objc dynamic var name: String = ""
+    @objc dynamic var isClosed: Int = 0
+    @objc dynamic var photo50: String = ""
     @objc dynamic var photo100: String = ""
     @objc dynamic var photo200: String = ""
-    @objc dynamic var photo50: String = ""
+    
     
     enum CodingKeys: String, CodingKey {
         case isClosed = "is_closed"
@@ -39,9 +40,10 @@ class MyGroupVkRealm: Object {
         self.id = json["id"].intValue
         self.isClosed = json["is_closed"].intValue
         self.name = json["name"].stringValue
+        self.photo50 = json["photo_50"].stringValue
         self.photo100 = json["photo_100"].stringValue
         self.photo200 = json["photo_200"].stringValue
-        self.photo50 = json["photo_50"].stringValue
+        
     }
     
     override static func primaryKey() -> String? {

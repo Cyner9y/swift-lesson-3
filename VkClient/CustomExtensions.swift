@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension UIBezierPath {
   convenience init(heartSize rect: CGFloat) {
@@ -76,4 +77,8 @@ extension String {
   }
 }
 
-
+extension Results {
+    func toArray<T>(type: T.Type) -> [T] {
+        return compactMap { $0 as? T }
+    }
+}

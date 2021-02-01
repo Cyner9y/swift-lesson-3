@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 import RealmSwift
 
 class GroupsTableController: UITableViewController {

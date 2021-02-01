@@ -6,23 +6,24 @@
 //
 
 import UIKit
-import Kingfisher
+import RealmSwift
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var friendsVk = [FriendVk]() {
+    private lazy var friendsVk = try? Realm().objects(FriendVkRealm.self).toArray(type: FriendVkRealm.self) as [FriendVkRealm] {
         didSet {
-            (firstLetters, sortedFriends) = sortFriends(friendsVk)
+            (firstLetters, sortedFriends) = sortFriends(friendsVk!)
         }
     }
+    
     var firstLetters = [Character]()
-    var sortedFriends = [Character: [FriendVk]]() {
+    var sortedFriends = [Character: [FriendVkRealm]]() {
         didSet {
             tableView.reloadData()
         }
     }
     var searchActive = false
-    var filteredFriendsArray: [FriendVk] = [] {
+    var filteredFriendsArray: [FriendVkRealm] = [] {
         didSet {
             updateFriendsIndex(friends: filteredFriendsArray)
             updateFriendsNamesDictionary(friends: filteredFriendsArray)
@@ -39,8 +40,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         let networkService = NetworkService()
         networkService.friendsGet() { [weak self] friends in
-            self?.friendsVk = friends
-            self?.tableView.reloadData()
+            try? RealmService.save(items: friends)
         }
     }
     
@@ -122,7 +122,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFriendsArray = friendsVk.filter({ (friend) -> Bool in
+        filteredFriendsArray = friendsVk!.filter({ (friend) -> Bool in
             FirstLetterSearch.isMatched(searchBase: "\(friend.firstName) \(friend.lastName)", searchString: searchText)
         })
         updateFriendsIndex(friends: filteredFriendsArray)
@@ -130,8 +130,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         print(filteredFriendsArray)
         
         if (searchText.count == 0) {
-            updateFriendsIndex(friends: friendsVk)
-            updateFriendsNamesDictionary(friends: friendsVk)
+            updateFriendsIndex(friends: friendsVk ?? [])
+            updateFriendsNamesDictionary(friends: friendsVk ?? [])
             searchActive = false
             hideKeyboard()
         }
@@ -143,17 +143,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         friendsSearchBar.endEditing(true)
     }
     
-    func updateFriendsNamesDictionary(friends: [FriendVk]) {
+    func updateFriendsNamesDictionary(friends: [FriendVkRealm]) {
         sortedFriends = SectionIndexManager.getFriendIndexDictionary(array: friends)
     }
     
-    func updateFriendsIndex(friends: [FriendVk]) {
+    func updateFriendsIndex(friends: [FriendVkRealm]) {
         firstLetters = SectionIndexManager.getOrderedIndexArray(array: friends)
     }
     
-    func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
+    func sortFriends(_ friends: [FriendVkRealm]) -> (characters: [Character], sortedFriends: [Character: [FriendVkRealm]]) {
         var characters = [Character]()
-        var sortedFriends = [Character: [FriendVk]]()
+        var sortedFriends = [Character: [FriendVkRealm]]()
         
         friends.forEach { friend in
             guard let character = friend.lastName.first else { return }

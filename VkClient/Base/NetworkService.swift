@@ -25,7 +25,7 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet(completion: @escaping ([FriendVk]) -> Void) {
+    func friendsGet(completion: @escaping ([FriendVkRealm]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
             "fields": "photo_50",
@@ -33,18 +33,25 @@ class NetworkService {
             "v": version
         ]
         
-        AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    let response = try? decoder.decode(FriendsVk.self, from: data)
-                    let friends = response?.response.items
-                    completion(friends!)
-                case .failure(let error):
-                    print(error)
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
+            guard let data = responds.data else { return }
+            
+            do {
+                let responstData = try JSONDecoder().decode(Response.self, from: data)
+                let dataFriends = FriendsVkRealm(json: responstData.response)
+                
+                var friendsArray = [FriendVkRealm]()
+                
+                for item in dataFriends.friends {
+                    let friend = FriendVkRealm(json: item)
+                    friendsArray.append(friend)
                 }
+                completion(friendsArray)
+                
+            } catch {
+                print("error")
             }
+        }
     }
     
     func groupsGet(completion: @escaping ([MyGroupVkRealm]) -> Void) {
@@ -104,24 +111,32 @@ class NetworkService {
         }
     }
     
-    func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
+    func groupsGetCatalog(completion: @escaping ([GroupVkRealm]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [
             "access_token": token,
             "v": version
         ]
         
-        AF.request(baseUrl + path, method: .get, parameters: params)
-            .responseData { response in
-                switch response.result {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    let response = try? decoder.decode(GroupsVk.self, from: data)
-                    let groups = response?.response.items
-                    completion(groups!)
-                case .failure(let error):
-                    print(error)
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
+            guard let data = responds.data else { return }
+            
+            do {
+                let responstData = try JSONDecoder().decode(Response.self, from: data)
+                let dataGroups = GroupsVkRealm(json: responstData.response)
+                
+                var groupsArray = [GroupVkRealm]()
+                
+                for item in dataGroups.groups {
+                    let group = GroupVkRealm(json: item)
+                    groupsArray.append(group)
                 }
+                
+                completion(groupsArray)
+                
+            } catch {
+                print("error")
             }
+        }
     }
 }

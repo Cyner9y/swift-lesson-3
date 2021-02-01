@@ -13,7 +13,8 @@ class RealmService {
     
     static func save <T: Object>(items: [T],
                                  configuration: Realm.Configuration = deleteIfMigration,
-                                 update: Realm.UpdatePolicy = .modified) throws {
+                                 update: Realm.UpdatePolicy = .all) throws {
+        print(configuration.fileURL ?? "")
         let realm = try Realm(configuration: configuration)
         print(configuration.fileURL ?? "")
         try realm.write{

@@ -1,0 +1,26 @@
+//
+//  RealmService.swift
+//  VkClient
+//
+//  Created by Yuriy Fedorov on 31.01.2021.
+//
+
+import RealmSwift
+
+class RealmService {
+    
+    static let deleteIfMigration = Realm.Configuration(deleteRealmIfMigrationNeeded: false)
+    
+    static func save <T: Object>(items: [T],
+                                 configuration: Realm.Configuration = deleteIfMigration,
+                                 update: Realm.UpdatePolicy = .all) throws {
+        print(configuration.fileURL ?? "")
+        //дальше этой строчки почему-то не идет
+        let realm = try Realm(configuration: configuration)
+        print("1")
+        print(configuration.fileURL ?? "")
+        try realm.write{
+            realm.add(items, update: update)
+        }
+    }
+}

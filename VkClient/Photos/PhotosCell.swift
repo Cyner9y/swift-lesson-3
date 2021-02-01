@@ -11,13 +11,7 @@ class PhotosCell: UICollectionViewCell {
 
     @IBOutlet weak var userPhoto: UIImageView!
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        userPhoto.image = nil
-    }
-    
-    func congigure(wih photo: PhotoVk) {
-        let url = URL(string: photo.sizes.last!.url)
-        userPhoto.kf.setImage(with: url)
+    func configure(wih photo: PhotoVkRealm) {
+        userPhoto.kf.setImage(with: URL(string: photo.photo_604))
     }
 }

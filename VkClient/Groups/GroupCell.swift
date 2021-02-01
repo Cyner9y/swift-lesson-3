@@ -18,7 +18,7 @@ class GroupCell: UITableViewCell {
         groupAvatar.image = nil
     }
     
-    func configureMyGroup(with groupVk: MyGroupVk) {
+    func configureMyGroup(with groupVk: MyGroupVkRealm) {
         groupName.text = groupVk.name
         let url = URL(string: groupVk.photo50)
         groupAvatar.kf.setImage(with: url)

@@ -33,8 +33,8 @@ class NetworkService {
             "v": version
         ]
         
-        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
-            guard let data = responds.data else { return }
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { response in
+            guard let data = response.data else { return }
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
@@ -62,8 +62,8 @@ class NetworkService {
             "v" : version
         ]
         
-        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
-            guard let data = responds.data else { return }
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { response in
+            guard let data = response.data else { return }
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
@@ -93,8 +93,8 @@ class NetworkService {
             "v" : version
         ]
         
-        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
-            guard let data = responds.data else { return }
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { response in
+            guard let data = response.data else { return }
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
@@ -106,7 +106,6 @@ class NetworkService {
                     let friendPhoto = FriendPhotoVk(json: item)
                     photoArray.append(friendPhoto)
                 }
-                print(photoArray)
                 completion(photoArray)
                 
             } catch {
@@ -114,7 +113,7 @@ class NetworkService {
             }
         }
     }
-    
+
     func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [
@@ -122,8 +121,8 @@ class NetworkService {
             "v": version
         ]
         
-        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { responds in
-            guard let data = responds.data else { return }
+        AF.request(baseUrl+path, method: .get, parameters: params).responseJSON { response in
+            guard let data = response.data else { return }
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)

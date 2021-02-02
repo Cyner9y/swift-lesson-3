@@ -12,7 +12,7 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var groupName: UILabel!
     @IBOutlet weak var groupAvatar: UIImageView!
     
-    func configureMyGroup(with groupVk: MyGroupVkRealm) {
+    func configureMyGroup(with groupVk: MyGroupVk) {
         groupName.text = groupVk.name
         let url = URL(string: groupVk.photo50)
         groupAvatar.kf.setImage(with: url)
@@ -20,7 +20,7 @@ class GroupCell: UITableViewCell {
         groupAvatar.clipsToBounds = true
     }
     
-    func configureAllGroup(with groupVk: GroupVkRealm) {
+    func configureAllGroup(with groupVk: GroupVk) {
         groupName.text = groupVk.name
         let url = URL(string: groupVk.photo50)
         groupAvatar.kf.setImage(with: url)

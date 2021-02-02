@@ -10,7 +10,7 @@ import RealmSwift
 
 class GroupsTableController: UITableViewController {
     
-    private lazy var groupsVk = try? Realm().objects(MyGroupVkRealm.self)
+    private lazy var groupsVk = try? Realm().objects(MyGroupVk.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,16 +10,16 @@ import RealmSwift
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    private lazy var friendsVk = try? Realm().objects(FriendVkRealm.self).toArray(type: FriendVkRealm.self) as [FriendVkRealm]
+    private lazy var friendsVk = try? Realm().objects(FriendVk.self).toArray(type: FriendVk.self) as [FriendVk]
     
     var firstLetters = [Character]()
-    var sortedFriends = [Character: [FriendVkRealm]]() {
+    var sortedFriends = [Character: [FriendVk]]() {
         didSet {
             tableView.reloadData()
         }
     }
     var searchActive = false
-    var filteredFriendsArray: [FriendVkRealm] = [] {
+    var filteredFriendsArray: [FriendVk] = [] {
         didSet {
             updateFriendsIndex(friends: filteredFriendsArray)
             updateFriendsNamesDictionary(friends: filteredFriendsArray)
@@ -51,7 +51,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         let char = firstLetters[indexPath.section]
         
         if let selectedFriend = sortedFriends[char]?[indexPath.row] {
-            destination.id = selectedFriend.id
+            destination.friendsId = selectedFriend.id
         }
     }
     
@@ -141,17 +141,17 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         friendsSearchBar.endEditing(true)
     }
     
-    func updateFriendsNamesDictionary(friends: [FriendVkRealm]) {
+    func updateFriendsNamesDictionary(friends: [FriendVk]) {
         sortedFriends = SectionIndexManager.getFriendIndexDictionary(array: friends)
     }
     
-    func updateFriendsIndex(friends: [FriendVkRealm]) {
+    func updateFriendsIndex(friends: [FriendVk]) {
         firstLetters = SectionIndexManager.getOrderedIndexArray(array: friends)
     }
     
-    func sortFriends(_ friends: [FriendVkRealm]) -> (characters: [Character], sortedFriends: [Character: [FriendVkRealm]]) {
+    func sortFriends(_ friends: [FriendVk]) -> (characters: [Character], sortedFriends: [Character: [FriendVk]]) {
         var characters = [Character]()
-        var sortedFriends = [Character: [FriendVkRealm]]()
+        var sortedFriends = [Character: [FriendVk]]()
         
         friends.forEach { friend in
             guard let character = friend.lastName.first else { return }

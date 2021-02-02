@@ -9,7 +9,7 @@ import Foundation
 
 class SectionIndexManager {
   
-  static func getOrderedIndexArray(array: [FriendVkRealm]) -> [Character] {
+  static func getOrderedIndexArray(array: [FriendVk]) -> [Character] {
     var indexArray: [Character] = []
     var indexSet = Set<Character>()
     for item in array {
@@ -23,8 +23,8 @@ class SectionIndexManager {
     return indexArray
   }
   
-  static func getFriendIndexDictionary(array: [FriendVkRealm]) -> [Character: [FriendVkRealm]] {
-    var friendIndexDictionary: [Character: [FriendVkRealm]] = [:]
+  static func getFriendIndexDictionary(array: [FriendVk]) -> [Character: [FriendVk]] {
+    var friendIndexDictionary: [Character: [FriendVk]] = [:]
     
     for item in array {
         let firstLetter = item.firstName[0]

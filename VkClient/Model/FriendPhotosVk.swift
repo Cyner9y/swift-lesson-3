@@ -8,22 +8,22 @@
 import SwiftyJSON
 import RealmSwift
 
-class PhotosVkRealm: Object {
+class FriendPhotosVk: Object {
     @objc dynamic var count: Int = 0
-    var photos: [JSON] = []
+    var friendsPhoto: [JSON] = []
     
     convenience init(json: JSON) {
         self.init()
         if let count = json["count"].int {
             self.count = count
         }
-        if let photos = json["items"].array {
-            self.photos = photos
+        if let friendsPhoto = json["items"].array {
+            self.friendsPhoto = friendsPhoto
         }
     }
 }
 
-class PhotoVkRealm: Object {
+class FriendPhotoVk: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var photo_75: String = ""
     @objc dynamic var photo_130: String = ""

@@ -25,7 +25,7 @@ class NetworkService {
         case event = "event"
     }
     
-    func friendsGet(completion: @escaping ([FriendVkRealm]) -> Void) {
+    func friendsGet(completion: @escaping ([FriendVk]) -> Void) {
         let path = "/method/friends.get"
         let params: Parameters = [
             "fields": "photo_50",
@@ -38,12 +38,12 @@ class NetworkService {
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
-                let dataFriends = FriendsVkRealm(json: responstData.response)
+                let dataFriends = FriendsVk(json: responstData.response)
                 
-                var friendsArray = [FriendVkRealm]()
+                var friendsArray = [FriendVk]()
                 
                 for item in dataFriends.friends {
-                    let friend = FriendVkRealm(json: item)
+                    let friend = FriendVk(json: item)
                     friendsArray.append(friend)
                 }
                 completion(friendsArray)
@@ -54,7 +54,7 @@ class NetworkService {
         }
     }
     
-    func groupsGet(completion: @escaping ([MyGroupVkRealm]) -> Void) {
+    func groupsGet(completion: @escaping ([MyGroupVk]) -> Void) {
         let path = "/method/groups.get"
         let params: Parameters = [
             "access_token" : token,
@@ -67,12 +67,12 @@ class NetworkService {
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
-                let dataGroups = MyGroupsVkRealm(json: responstData.response)
+                let dataGroups = MyGroupsVk(json: responstData.response)
                 
-                var groupsArray = [MyGroupVkRealm]()
+                var groupsArray = [MyGroupVk]()
                 
                 for item in dataGroups.groups {
-                    let group = MyGroupVkRealm(json: item)
+                    let group = MyGroupVk(json: item)
                     groupsArray.append(group)
                 }
                 
@@ -84,12 +84,13 @@ class NetworkService {
         }
     }
     
-    
-    func photosGetAll(ownerId: Int, completion: @escaping ([PhotoVkRealm]) -> Void) {
+    func loadFriendsPhoto(friendId: Int, completion: @escaping ([FriendPhotoVk]) -> Void) {
+        let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"
+        
         let params: Parameters = [
             "access_token" : token,
-            "owner_id" : ownerId,
+            "owner_id" : friendId,
             "v" : version
         ]
         
@@ -98,20 +99,24 @@ class NetworkService {
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
-                let dataFriends = PhotosVkRealm(json: responstData.response)
-                var photos = [PhotoVkRealm]()
-                for item in dataFriends.photos {
-                    let photo = PhotoVkRealm(json: item)
-                    photos.append(photo)
+                let dataFriends = FriendPhotosVk(json: responstData.response)
+                
+                var friendsArray = [FriendPhotoVk]()
+                
+                for item in dataFriends.friendsPhoto {
+                    let friendPhoto = FriendPhotoVk(json: item)
+                    friendsArray.append(friendPhoto)
                 }
-                completion(photos)
+                
+                completion(friendsArray)
+                
             } catch {
                 print("error")
             }
         }
     }
     
-    func groupsGetCatalog(completion: @escaping ([GroupVkRealm]) -> Void) {
+    func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [
             "access_token": token,
@@ -123,12 +128,12 @@ class NetworkService {
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
-                let dataGroups = GroupsVkRealm(json: responstData.response)
+                let dataGroups = GroupsVk(json: responstData.response)
                 
-                var groupsArray = [GroupVkRealm]()
+                var groupsArray = [GroupVk]()
                 
                 for item in dataGroups.groups {
-                    let group = GroupVkRealm(json: item)
+                    let group = GroupVk(json: item)
                     groupsArray.append(group)
                 }
                 

@@ -14,7 +14,7 @@ class FriendCell: UITableViewCell {
     
     @IBOutlet weak var shadow: ShadowViewController!
     
-    func configure(with friendVk: FriendVkRealm) {
+    func configure(with friendVk: FriendVk) {
         friendName.text = "\(friendVk.firstName) \(friendVk.lastName)"
         let url = URL(string: friendVk.photo50)
         friendImage.kf.setImage(with: url)

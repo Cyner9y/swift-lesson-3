@@ -84,10 +84,9 @@ class NetworkService {
         }
     }
     
-    func loadFriendsPhoto(friendId: Int, completion: @escaping ([FriendPhotoVk]) -> Void) {
+    func photosGetAll(friendId: Int, completion: @escaping ([FriendPhotoVk]) -> Void) {
         let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"
-        
         let params: Parameters = [
             "access_token" : token,
             "owner_id" : friendId,
@@ -99,16 +98,16 @@ class NetworkService {
             
             do {
                 let responstData = try JSONDecoder().decode(Response.self, from: data)
-                let dataFriends = FriendPhotosVk(json: responstData.response)
+                let dataPhotos = FriendPhotosVk(json: responstData.response)
                 
-                var friendsArray = [FriendPhotoVk]()
+                var photoArray = [FriendPhotoVk]()
                 
-                for item in dataFriends.friendsPhoto {
+                for item in dataPhotos.friendsPhoto {
                     let friendPhoto = FriendPhotoVk(json: item)
-                    friendsArray.append(friendPhoto)
+                    photoArray.append(friendPhoto)
                 }
-                
-                completion(friendsArray)
+                print(photoArray)
+                completion(photoArray)
                 
             } catch {
                 print("error")

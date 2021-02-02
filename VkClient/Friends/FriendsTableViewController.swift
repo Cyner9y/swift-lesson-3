@@ -39,7 +39,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             try? RealmService.save(items: friends)
         }
         
-        (firstLetters, sortedFriends) = sortFriends(friendsVk!)
+        (firstLetters, sortedFriends) = sortFriends(friendsVk ?? [])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -14,12 +14,8 @@ class FriendPhotosVk: Object {
     
     convenience init(json: JSON) {
         self.init()
-        if let count = json["count"].int {
-            self.count = count
-        }
-        if let friendsPhoto = json["items"].array {
-            self.friendsPhoto = friendsPhoto
-        }
+        self.count = json["count"].intValue
+        self.friendsPhoto = json["items"].arrayValue
     }
 }
 
@@ -37,36 +33,16 @@ class FriendPhotoVk: Object {
     
     convenience init(json: JSON) {
         self.init()
-        if let id = json["id"].int {
-            self.id = id
-        }
-        if let photo_75 = json["photo_75"].string {
-            self.photo_75 = photo_75
-        }
-        if let photo_130 = json["photo_130"].string {
-            self.photo_130 = photo_130
-        }
-        if let photo_604 = json["photo_604"].string {
-            self.photo_604 = photo_604
-        }
-        if let photo_807 = json["photo_807"].string {
-            self.photo_807 = photo_807
-        }
-        if let photo_1280 = json["photo_1280"].string {
-            self.photo_1280 = photo_1280
-        }
-        if let photo_2560 = json["photo_2560"].string {
-            self.photo_2560 = photo_2560
-        }
-        if let width = json["width"].int {
-            self.width = width
-        }
-        if let height = json["height"].int {
-            self.height = height
-        }
-        if let date = json["date"].int {
-            self.date = date
-        }
+        self.id = json["id"].intValue
+        self.photo_75 = json["photo_75"].stringValue
+        self.photo_130 = json["photo_130"].stringValue
+        self.photo_604 = json["photo_604"].stringValue
+        self.photo_807 = json["photo_807"].stringValue
+        self.photo_1280 = json["photo_1280"].stringValue
+        self.photo_2560 = json["photo_2560"].stringValue
+        self.width = json["width"].intValue
+        self.height = json["height"].intValue
+        self.date = json["date"].intValue
     }
     
     override static func primaryKey() -> String? {

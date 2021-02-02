@@ -14,21 +14,20 @@ private let reuseIdentifier = "Cell"
 class PhotosCollectionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var friendsId = 0
-    private var photosVk = [FriendPhotoVk]()
+    private var photosVk = try? Realm().objects(FriendPhotoVk.self).toArray(type: FriendPhotoVk.self) as [FriendPhotoVk]
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
-        networkService.loadFriendsPhoto(friendId: friendsId) { (friendsPhoto) in
-            self.photosVk = friendsPhoto
+        networkService.photosGetAll(friendId: friendsId) { [weak self] friendsPhoto in
             try? RealmService.save(items: friendsPhoto)
         }
     }
     
     // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosVk.count
+        return photosVk?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,7 +36,7 @@ class PhotosCollectionController: UICollectionViewController, UICollectionViewDe
                 as? PhotosCell
         else { return UICollectionViewCell() }
 
-        cell.configure(wih: photosVk[indexPath.row])
+        cell.configure(wih: photosVk![indexPath.row])
         return cell
     }
 

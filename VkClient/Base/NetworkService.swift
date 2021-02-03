@@ -85,7 +85,6 @@ class NetworkService {
     }
     
     func photosGetAll(friendId: Int, completion: @escaping ([FriendPhotoVk]) -> Void) {
-        let baseUrl = "https://api.vk.com"
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "access_token" : token,
@@ -113,7 +112,7 @@ class NetworkService {
             }
         }
     }
-
+    
     func groupsGetCatalog(completion: @escaping ([GroupVk]) -> Void) {
         let path = "/method/groups.getCatalog"
         let params: Parameters = [

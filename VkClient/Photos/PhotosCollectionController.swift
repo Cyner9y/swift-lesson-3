@@ -15,7 +15,6 @@ class PhotosCollectionController: UICollectionViewController, UICollectionViewDe
     
     var friendsId = 0
     private var photosVk = try? Realm().objects(FriendPhotoVk.self).toArray(type: FriendPhotoVk.self) as [FriendPhotoVk]
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

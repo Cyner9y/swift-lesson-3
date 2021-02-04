@@ -12,6 +12,6 @@ class PhotosCell: UICollectionViewCell {
     @IBOutlet weak var userPhoto: UIImageView!
     
     func configure(wih photo: FriendPhotoVk) {
-        userPhoto.kf.setImage(with: URL(string: photo.photo_604))
+        userPhoto.kf.setImage(with: URL(string: photo.url))
     }
 }

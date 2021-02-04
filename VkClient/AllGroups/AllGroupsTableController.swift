@@ -6,28 +6,27 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AllGroupsTableController: UITableViewController {
     
-    var groupsVk = [GroupVk]()
+    private lazy var groupsVk = try? Realm().objects(GroupVk.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
         networkService.groupsGetCatalog() { [weak self] groups in
-            self?.groupsVk = groups
-            self?.tableView.reloadData()
+            try? RealmService.save(items: groups)
         }
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        groupsVk.count
+        return groupsVk?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,8 +35,8 @@ class AllGroupsTableController: UITableViewController {
                 as? GroupCell
         else { return UITableViewCell() }
         
-        cell.configureAllGroup(with: groupsVk[indexPath.row])
-        
+        cell.configureAllGroup(with: (groupsVk?[indexPath.row])!)
+
         return cell
     }
     

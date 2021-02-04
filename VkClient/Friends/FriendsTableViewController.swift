@@ -6,15 +6,12 @@
 //
 
 import UIKit
-import Kingfisher
+import RealmSwift
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var friendsVk = [FriendVk]() {
-        didSet {
-            (firstLetters, sortedFriends) = sortFriends(friendsVk)
-        }
-    }
+    private lazy var friendsVk = try? Realm().objects(FriendVk.self).toArray(type: FriendVk.self) as [FriendVk]
+    
     var firstLetters = [Character]()
     var sortedFriends = [Character: [FriendVk]]() {
         didSet {
@@ -39,9 +36,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         let networkService = NetworkService()
         networkService.friendsGet() { [weak self] friends in
-            self?.friendsVk = friends
-            self?.tableView.reloadData()
+            try? RealmService.save(items: friends)
         }
+        
+        (firstLetters, sortedFriends) = sortFriends(friendsVk ?? [])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,7 +51,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         let char = firstLetters[indexPath.section]
         
         if let selectedFriend = sortedFriends[char]?[indexPath.row] {
-            destination.id = selectedFriend.id
+            destination.friendsId = selectedFriend.id
         }
     }
     
@@ -122,7 +120,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFriendsArray = friendsVk.filter({ (friend) -> Bool in
+        filteredFriendsArray = friendsVk!.filter({ (friend) -> Bool in
             FirstLetterSearch.isMatched(searchBase: "\(friend.firstName) \(friend.lastName)", searchString: searchText)
         })
         updateFriendsIndex(friends: filteredFriendsArray)
@@ -130,8 +128,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         print(filteredFriendsArray)
         
         if (searchText.count == 0) {
-            updateFriendsIndex(friends: friendsVk)
-            updateFriendsNamesDictionary(friends: friendsVk)
+            updateFriendsIndex(friends: friendsVk ?? [])
+            updateFriendsNamesDictionary(friends: friendsVk ?? [])
             searchActive = false
             hideKeyboard()
         }

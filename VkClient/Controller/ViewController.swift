@@ -65,6 +65,7 @@ extension ViewController: WKNavigationDelegate {
         
         SessionVk.shared.token = token
         SessionVk.shared.userId = userId
+        print("========== Это токен: \(token) ==========")
         performSegue(withIdentifier: "loginSegue", sender: Any?.self)
         
         decisionHandler(.cancel)

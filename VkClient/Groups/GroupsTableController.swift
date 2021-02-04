@@ -6,45 +6,24 @@
 //
 
 import UIKit
-import Kingfisher
+import RealmSwift
 
 class GroupsTableController: UITableViewController {
     
-    var groupsVk = [MyGroupVk]()
-
-//    @IBAction func addGroup(segue: UIStoryboardSegue) {
-//        guard
-//            segue.identifier == "addGroup",
-//            let controller = segue.source as? AllGroupsTableController,
-//            let indexPath = controller.tableView.indexPathForSelectedRow,
-//            !groupsVk.contains(controller.groupsVk[indexPath.row])
-//        else { return }
-//        let group = controller.groupsVk[indexPath.row]
-//        groupsVk.append(group)
-//        tableView.reloadData()
-//    }
+    private lazy var groupsVk = try? Realm().objects(MyGroupVk.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let networkService = NetworkService()
         networkService.groupsGet() { [weak self] myGroups in
-            self?.groupsVk = myGroups
-            self?.tableView.reloadData()
-        }
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            groupsVk.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            try? RealmService.save(items: myGroups)
         }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        groupsVk.count
+        return groupsVk?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +32,7 @@ class GroupsTableController: UITableViewController {
                 as? GroupCell
         else { return UITableViewCell() }
         
-        cell.configureMyGroup(with: groupsVk[indexPath.row])
+        cell.configureMyGroup(with: (groupsVk?[indexPath.row])!)
         
         return cell
     }

@@ -1,45 +1,52 @@
 //
-//  GroupsVk.swift
+//  GroupsVkRealm.swift
 //  VkClient
 //
-//  Created by Yuriy Fedorov on 20.01.2021.
+//  Created by Yuriy Fedorov on 27.01.2021.
 //
 
-import Foundation
+import SwiftyJSON
+import RealmSwift
 
-struct GroupsVk: Codable {
-    let response: GroupsVkResponse
+class GroupsVk {
+    @objc dynamic var count: Int = 0
+    var groups: [JSON] =  []
+    
+    convenience init(json: JSON) {
+        self.init()
+        self.count = json["count"].intValue
+        self.groups = json["items"].arrayValue
+    }
 }
 
-struct GroupsVkResponse: Codable {
-    let count: Int
-    let items: [GroupVk]
-}
-
-struct GroupVk: Codable, Equatable {
-    let id: Int
-    let name, screenName: String
-    let isClosed: Int
-    let type: GroupsTypeEnum
-    let isAdmin, isMember, isAdvertiser: Int
-    let photo50, photo100, photo200: String
-
+class GroupVk: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var isClosed: Int = 0
+    @objc dynamic var photo50: String = ""
+    @objc dynamic var photo100: String = ""
+    @objc dynamic var photo200: String = ""
+    
+    
     enum CodingKeys: String, CodingKey {
-        case id, name
-        case screenName = "screen_name"
         case isClosed = "is_closed"
-        case type
-        case isAdmin = "is_admin"
-        case isMember = "is_member"
-        case isAdvertiser = "is_advertiser"
         case photo50 = "photo_50"
         case photo100 = "photo_100"
         case photo200 = "photo_200"
     }
-}
-
-enum GroupsTypeEnum: String, Codable {
-    case event = "event"
-    case group = "group"
-    case page = "page"
+    
+    convenience init(json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.isClosed = json["is_closed"].intValue
+        self.name = json["name"].stringValue
+        self.photo50 = json["photo_50"].stringValue
+        self.photo100 = json["photo_100"].stringValue
+        self.photo200 = json["photo_200"].stringValue
+        
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

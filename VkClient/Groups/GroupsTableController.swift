@@ -21,7 +21,6 @@ class GroupsTableController: UITableViewController {
         let networkService = NetworkService()
         networkService.groupsGet() { [weak self] myGroups in
             try? RealmService.save(items: myGroups)
-            self?.groupsTableView.reloadData()
         }
     }
 

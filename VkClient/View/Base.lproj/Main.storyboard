@@ -387,6 +387,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Поиск групп" id="00v-mE-bTV"/>
+                    <connections>
+                        <outlet property="groupsTableView" destination="m9T-3s-YDk" id="Zag-SP-5Ct"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qg0-Lh-39p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0dg-BN-BOU" userLabel="Exit" sceneMemberID="exit"/>

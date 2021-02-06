@@ -10,13 +10,18 @@ import RealmSwift
 
 class GroupsTableController: UITableViewController {
     
+    @IBOutlet var groupsTableView: UITableView!
+    
     private lazy var groupsVk = try? Realm().objects(MyGroupVk.self)
+    private var tokenNotificationsGroups: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        compareAndUpdate()
         let networkService = NetworkService()
         networkService.groupsGet() { [weak self] myGroups in
             try? RealmService.save(items: myGroups)
+            self?.groupsTableView.reloadData()
         }
     }
 
@@ -39,5 +44,28 @@ class GroupsTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func compareAndUpdate() {
+        guard let realm = try? Realm() else { return }
+        groupsVk = realm.objects(MyGroupVk.self)
+        
+        self.tokenNotificationsGroups = groupsVk?.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                self?.groupsTableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                self?.groupsTableView.beginUpdates()
+                self?.groupsTableView.insertRows(at: insertions.map ( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.groupsTableView.deleteRows(at: deletions.map ( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.groupsTableView.reloadRows(at: modifications.map( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.groupsTableView.endUpdates()
+            case .error(let error):
+                print(error)
+            }
+        }
     }
 }

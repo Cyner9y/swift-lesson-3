@@ -157,6 +157,7 @@
                     <navigationItem key="navigationItem" title="Друзья" id="1y1-NX-VUh"/>
                     <connections>
                         <outlet property="friendsSearchBar" destination="CSm-0H-HmR" id="Xnx-sx-fX8"/>
+                        <outlet property="friendsTableView" destination="K8d-1k-gK3" id="Dqn-Kw-R6S"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsr-zW-wCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -42,7 +42,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         (firstLetters, sortedFriends) = sortFriends(friendsVk ?? [])
-//        compareAndUpdate()
+        compareAndUpdate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,26 +170,26 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         return (characters, sortedFriends)
     }
     
-//    private func compareAndUpdate() {
-//        guard let realm = try? Realm() else { return }
-//        let friendsVkObjects = realm.objects(FriendVk.self)
-//
-//        self.tokenNotificationsFriends = friendsVkObjects?.observe { [weak self] (changes: RealmCollectionChange) in
-//            switch changes {
-//            case .initial:
-//                self?.groupsTableView.reloadData()
-//            case .update(_, let deletions, let insertions, let modifications):
-//                self?.friendsTableView.beginUpdates()
-//                self?.friendsTableView.insertRows(at: insertions.map ( {IndexPath(row: $0, section: 0)} ),
-//                                                     with: .automatic)
-//                self?.friendsTableView.deleteRows(at: deletions.map ( {IndexPath(row: $0, section: 0)} ),
-//                                                     with: .automatic)
-//                self?.friendsTableView.reloadRows(at: modifications.map( {IndexPath(row: $0, section: 0)} ),
-//                                                     with: .automatic)
-//                self?.friendsTableView.endUpdates()
-//            case .error(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    private func compareAndUpdate() {
+        guard let realm = try? Realm() else { return }
+        let friendsVkObjects = realm.objects(FriendVk.self)
+
+        self.tokenNotificationsFriends = friendsVkObjects.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                self?.friendsTableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                self?.friendsTableView.beginUpdates()
+                self?.friendsTableView.insertRows(at: insertions.map ( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.friendsTableView.deleteRows(at: deletions.map ( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.friendsTableView.reloadRows(at: modifications.map( {IndexPath(row: $0, section: 0)} ),
+                                                     with: .automatic)
+                self?.friendsTableView.endUpdates()
+            case .error(let error):
+                print(error)
+            }
+        }
+    }
 }

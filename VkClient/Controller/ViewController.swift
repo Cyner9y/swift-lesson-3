@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -66,6 +67,11 @@ extension ViewController: WKNavigationDelegate {
         SessionVk.shared.token = token
         SessionVk.shared.userId = userId
         print("========== Это токен: \(token) ==========")
+        
+        Auth.auth().signInAnonymously { [weak self] (result, error) in
+            print("========== Firebase: \(result), \(error) ==========")
+        }
+        
         performSegue(withIdentifier: "loginSegue", sender: Any?.self)
         
         decisionHandler(.cancel)

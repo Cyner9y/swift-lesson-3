@@ -42,7 +42,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
         (firstLetters, sortedFriends) = sortFriends(friendsVk ?? [])
-        compareAndUpdate()
+//        compareAndUpdate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

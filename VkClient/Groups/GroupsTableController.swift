@@ -7,6 +7,8 @@
 
 import UIKit
 import RealmSwift
+import Firebase
+import FirebaseDatabase
 
 class GroupsTableController: UITableViewController {
     
@@ -15,6 +17,9 @@ class GroupsTableController: UITableViewController {
     private lazy var groupsVk = try? Realm().objects(MyGroupVk.self)
     private var tokenNotificationsGroups: NotificationToken?
     
+    var citiesRef: DatabaseReference!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         compareAndUpdate()
@@ -22,6 +27,12 @@ class GroupsTableController: UITableViewController {
         networkService.groupsGet() { [weak self] myGroups in
             try? RealmService.save(items: myGroups)
         }
+                
+        let zipcode = Int.random(in: 10000...99999)
+        let city = FirebaseCity(name: "Moscow", zipcode: zipcode)
+        
+        let cityRef = self.citiesRef.child("Moscow".lowercased())
+        cityRef.setValue(city.toAnyObject())
     }
 
     // MARK: - Table view data source

@@ -16,6 +16,8 @@
 		D6281E0F257698FB00781510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6281E0D257698FB00781510 /* LaunchScreen.storyboard */; };
 		D63BA8F025B232E4000B59D3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63BA8EF25B232E4000B59D3 /* NetworkService.swift */; };
 		D670BF0525C6DD2C00FC0492 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670BF0425C6DD2C00FC0492 /* RealmService.swift */; };
+		D6717E3325CEEE3200ED552F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6717E3225CEEE3200ED552F /* GoogleService-Info.plist */; };
+		D6717E5225D015CC00ED552F /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6717E5125D015CC00ED552F /* FirebaseModel.swift */; };
 		D6772E0225851F2200B29277 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E0125851F2200B29277 /* FriendsTableViewController.swift */; };
 		D6772E062585209200B29277 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E042585209200B29277 /* FriendCell.swift */; };
 		D6772E0D2586220700B29277 /* AllGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6772E0C2586220700B29277 /* AllGroupsTableController.swift */; };
@@ -60,6 +62,8 @@
 		D6281E10257698FB00781510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D63BA8EF25B232E4000B59D3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D670BF0425C6DD2C00FC0492 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		D6717E3225CEEE3200ED552F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6717E5125D015CC00ED552F /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		D6772E0125851F2200B29277 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		D6772E042585209200B29277 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D6772E0C2586220700B29277 /* AllGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				D6772DFC25851A8300B29277 /* Friends */,
 				D6772DFE25851ABD00B29277 /* Groups */,
 				D6281E10257698FB00781510 /* Info.plist */,
+				D6717E3225CEEE3200ED552F /* GoogleService-Info.plist */,
 				D6772DFF25851C3900B29277 /* Model */,
 				D6772DFD25851A9200B29277 /* Photos */,
 				D6281E04257698F800781510 /* SceneDelegate.swift */,
@@ -221,6 +226,7 @@
 				D69B07CA25C1FF5200B22F9D /* GroupsVk.swift */,
 				D69B07CD25C1FF6500B22F9D /* MyGroupsVk.swift */,
 				D69B07D025C1FF7D00B22F9D /* FriendPhotosVk.swift */,
+				D6717E5125D015CC00ED552F /* FirebaseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 			files = (
 				D6281E0F257698FB00781510 /* LaunchScreen.storyboard in Resources */,
 				D6281E0C257698FB00781510 /* Assets.xcassets in Resources */,
+				D6717E3325CEEE3200ED552F /* GoogleService-Info.plist in Resources */,
 				D6F1B5252594B1A8003B1789 /* NewsCell.xib in Resources */,
 				D6281E0A257698F800781510 /* Main.storyboard in Resources */,
 			);
@@ -387,6 +394,7 @@
 				D6F1B52D2594B99B003B1789 /* CommentControl.swift in Sources */,
 				D6F1B51C2594B06A003B1789 /* NewsTableController.swift in Sources */,
 				D670BF0525C6DD2C00FC0492 /* RealmService.swift in Sources */,
+				D6717E5225D015CC00ED552F /* FirebaseModel.swift in Sources */,
 				D69B07C825C1FF3F00B22F9D /* FriendsVk.swift in Sources */,
 				D69B07D125C1FF7D00B22F9D /* FriendPhotosVk.swift in Sources */,
 				D6F1B5242594B1A8003B1789 /* NewsCell.swift in Sources */,
